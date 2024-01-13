@@ -1,5 +1,5 @@
-import express, { static } from 'express';
-import helmet from 'helmet';
+const express = require('express');
+const helmet = require('helmet');
 const app = express();
 
 
@@ -48,9 +48,9 @@ const app = express();
 
 
 
-export default app;
-import api from './server.js';
-app.use(static('public'));
+module.exports = app;
+const api = require('./server.js');
+app.use(express.static('public'));
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {
@@ -59,4 +59,4 @@ app.get("/", function (request, response) {
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(` Your app is listening on port 😊 ${port}`);
-});
+}); 
