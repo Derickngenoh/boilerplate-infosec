@@ -1,5 +1,5 @@
-const express = require('express');
-const helmet = require('helmet');
+import express, { static } from 'express';
+import helmet from 'helmet';
 const app = express();
 
 
@@ -48,9 +48,9 @@ const app = express();
 
 
 
-module.exports = app;
-const api = require('./server.js');
-app.use(express.static('public'));
+export default app;
+import api from './server.js';
+app.use(static('public'));
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {
